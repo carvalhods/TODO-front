@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>TODO</title>
+    <link rel="stylesheet" href="vendor/semantic.min.css" />
+    <script src="vendor/jquery.min.js"></script>
+    <script src="vendor/semantic.min.js"></script>
+    <script src="todo.js"></script>
+  </head>
+  <body>
+    <div class="ui grid container">
+      <div class="row">
+        <div class="column">
+          <h2 class="ui dividing header">TODO</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="eight wide column">
+          <div class="ui segment">
+            <div class="ui input">
+              <input type="text" id="item_create" />
+            </div>
+            <button class="ui primary button">Incluir</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="eight wide column">
+          <table class="ui table" id="table1">
+            <tr>
+              <td>
+                <div class="ui input">
+                  <input type="text" id="tr1" value="teste" codigo="123"/>
+                </div>
+                <button class="ui secondary button">Salvar</button>
+                <button class="ui button">Excluir</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="eight wide column">
+          <div class="ui segment">
+            <div class="ui input">
+              <input type="text" id="search" placeholder="Busca" />
+            </div>
+            <button class="ui button">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
