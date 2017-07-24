@@ -17,8 +17,7 @@ exports.config = {
   ],
 
   cucumberOpts: {
-    require: '../tests/features/step_definitions/*.js',
-    tags: false,
+    require: './tests/features/step_definitions/*.js',
     format: 'pretty',
     profile: false,
     'no-source': true
@@ -26,6 +25,7 @@ exports.config = {
 
   onPrepare: function() {
     browser.manage().window().maximize();
+    browser.driver.get("http://localhost:8080");
   }
 
 }
