@@ -51,8 +51,14 @@ module.exports = function() {
   Cenário: Pesquisar
   */
   this.Then(/^a lista de TODOs deverá conter ao menos um item que contenha o valor "([^"]*)"$/, function (arg1, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback(null, 'pending');
+    element(by.id('divMessage')).getText()
+    .then(function(texto) {
+      if (texto.trim() != "Filtrado") {
+        assert.equal(true, false);
+      } else {
+        callback();
+      }
+    });
   });
 
 
@@ -85,7 +91,7 @@ module.exports = function() {
       element(by.repeater('todo in todos').row(position))
         .element(by.css('.btnExcluir'))
         .click();
-    }, 100);
+    }, 1200);
   });
 
   this.Then(/^o TODO deverá sair da lista$/, function (callback) {
@@ -98,7 +104,7 @@ module.exports = function() {
           callback();
         }
       });
-    }, 200);
+    }, 1300);
   });
 
 }

@@ -6,16 +6,16 @@ Feature: Implementar uma aplicação de TODO
   @10
   Scenario: Desenvolver uma função para incluir um TODO
     Given que a aplicação esteja aberta
-    When o usuário preencher o campo "inputTodo" com o valor "Exercitar"
+    When o usuário preencher o campo "inputTodo" com o valor "Estudar"
     And o usuário clicar no botão "btnIncluir"
-    Then o valor "Exercitar" deverá aparecer na lista de TODOs
+    Then o valor "Estudar" deverá aparecer na lista de TODOs
 
   @11
   Scenario: Desenvolver uma função para localizar um TODO
     Given que a aplicação esteja aberta
-    When o usuário preencher o campo "inputSearch" com o valor "Exercitar"
+    When o usuário preencher o campo "inputSearch" com o valor "Estudar"
     And o usuário clicar no botão "btnSearch"
-    Then a lista de TODOs deverá conter ao menos um item que contenha o valor "Exercitar"
+    Then a lista de TODOs deverá conter ao menos um item que contenha o valor "Estudar"
 
   @12
   Scenario: Desenvolver uma função para editar um TODO

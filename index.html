@@ -7,7 +7,6 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/semantic-ui/dist/semantic.min.js"></script>
     <script src="node_modules/angular/angular.min.js"></script>
-    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
     <script src="main.js"></script>
   </head>
   <body ng-app="todo" ng-controller="TodoController">
@@ -46,9 +45,9 @@
         <div class="eight wide column">
           <div class="ui segment">
             <div class="ui input">
-              <input type="text" id="inputSearch" placeholder="Busca" />
+              <input type="text" id="inputSearch" placeholder="Busca" ng-model="searchText"/>
             </div>
-            <button class="ui secondary button" id="btnSearch">Buscar</button>
+            <button class="ui secondary button" id="btnSearch" ng-click="search(searchText)">Buscar</button>
           </div>
         </div>
       </div>

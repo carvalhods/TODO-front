@@ -4,7 +4,8 @@
   "description": "TODO-Front",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/webdriver-manager update && ./node_modules/.bin/protractor protractor.conf.js"
+    "start": "./node_modules/.bin/http-server -c-1 -o",
+    "test": "./node_modules/.bin/http-server -c-1&;; ./node_modules/.bin/webdriver-manager update && ./node_modules/.bin/protractor protractor.conf.js && killall node"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,6 @@
   "homepage": "https://github.com/carvalhods/TODO-Front#readme",
   "dependencies": {
     "angular": "^1.6.5",
-    "angular-resource": "^1.6.5",
     "semantic-ui": "^2.2.11"
   },
   "devDependencies": {
