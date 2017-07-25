@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>TODO</title>
+    <link rel="stylesheet" href="node_modules/semantic-ui/dist/semantic.min.css" />
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/semantic-ui/dist/semantic.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="main.js"></script>
+  </head>
+  <body ng-app="todo" ng-controller="TodoController">
+    <div class="ui grid container">
+      <div class="row">
+        <div class="column">
+          <h2 class="ui dividing header">TODO</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="eight wide column">
+          <div class="ui segment">
+            <div class="ui input">
+              <input type="text" id="inputTodo" ng-model="todo.item"/>
+            </div>
+            <button class="ui primary button" id="btnIncluir" ng-click=salva(todo)>Incluir</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="eight wide column">
+          <table class="ui compact table" id="table1">
+            <tr ng-repeat="_todo in todos">
+              <td style="width:50%">
+                {{ _todo.item }}
+              </td>
+              <td>
+                <button class="ui button btnEditar" onclick="$('.ui.modal').modal('show')" ng-click="edita(_todo)">Editar</button>
+                <button class="ui button btnExcluir" ng-click="remove(_todo)">Excluir</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="eight wide column">
+          <div class="ui segment">
+            <div class="ui input">
+              <input type="text" id="inputSearch" placeholder="Busca" />
+            </div>
+            <button class="ui secondary button" id="btnSearch">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div id="divMessage">
+      {{ msg }}
+    </div>
+
+
+    <div class="ui modal">
+      <div class="header">
+        Editar TODO
+      </div>
+      <div class="content">
+        <div class="ui segment">
+          <div class="ui input">
+            <input type="text" style="width:300px" id="inputEdit" ng-model="editTodo.item"/>
+          </div>
+          <button class="ui primary button" id="btnSalvar"
+              onclick="$('.ui.modal').modal('hide')" ng-click="salva(editTodo)">Salvar</button>
+          <button class="ui secondary button" id="btnCancelar"
+              onclick="$('.ui.modal').modal('hide')">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
