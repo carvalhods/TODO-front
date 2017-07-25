@@ -16,23 +16,22 @@ module.exports = function() {
       });
   });
 
-
-  /*
-  Cenário: Incluir
-  */
-  this.When(/^o usuário preencher o campo "([^"]*)" com o valor "([^"]*)"$/, function (input, value) {
-    element(by.id(input)).clear()
+  /**
+   * Cenário: Usuário deseja incluir um TODO
+   */
+  this.When(/^o usuário incluir o TODO "([^"]*)"$/, function (value) {
+    element(by.id("inputTodo")).clear()
     .then(function() {
-      element(by.id(input)).sendKeys(value);
+      element(by.id("inputTodo")).sendKeys(value);
     });
   });
 
-  this.When(/^o usuário clicar no botão "([^"]*)"$/, function (button) {
-    element(by.id(button)).click();
+  this.When(/^clicar em Incluir$/, function () {
+    element(by.id("btnIncluir")).click();
   });
 
-  this.Then(/^o valor "([^"]*)" deverá aparecer na lista de TODOs$/, function (value, callback) {
-    var mappedVals = element.all(by.repeater('todo in todos').column('todo.item')).map(function (elm) {
+  this.Then(/^o valor "([^"]*)" deverá aparecer na lista$/, function (value, callback) {
+    var mappedVals = element.all(by.repeater('todo in todos').column('todo.item')).map(function(elm) {
       return elm.getText();
     });
     mappedVals.then(function (textArr) {
@@ -47,28 +46,54 @@ module.exports = function() {
   });
 
 
-  /*
-  Cenário: Pesquisar
+  /**
+  * Cenário: Usuário deseja localizar um TODO
   */
-  this.Then(/^a lista de TODOs deverá conter ao menos um item que contenha o valor "([^"]*)"$/, function (arg1, callback) {
-    element(by.id('divMessage')).getText()
-    .then(function(texto) {
-      if (texto.trim() != "Filtrado") {
-        assert.equal(true, false);
-      } else {
-        callback();
+  this.When(/^o usuário informar a palavra\-chave "([^"]*)"$/, function (value) {
+    element(by.id("inputSearch")).clear()
+    .then(function() {
+      element(by.id("inputSearch")).sendKeys(value);
+    });
+  });
+
+  this.When(/^clicar em Buscar$/, function () {
+    element(by.id("btnSearch")).click();
+  });
+
+  this.Then(/^a lista deverá conter ao menos um item que contenha o valor "([^"]*)"$/, function (value, callback) {
+    var mappedVals = element.all(by.repeater('todo in todos').column('todo.item')).map(function(elm) {
+      return elm.getText();
+    });
+    mappedVals.then(function (textArr) {
+      for (i in textArr) {
+        if (textArr[i].toLowerCase().includes(value.toLowerCase())) {
+          callback();
+          return;
+        }
       }
+      assert.equal(true, false);
     });
   });
 
 
-  /*
-  Cenário: Editar
+  /**
+  * Cenário: Usuário deseja editar um TODO
   */
   this.When(/^o usuário clicar no botão Editar do elemento na posição "([^"]*)"$/, function (position) {
     element(by.repeater('todo in todos').row(position))
       .element(by.css('.btnEditar'))
       .click();
+  });
+
+  this.When(/^digitar o valor "([^"]*)"$/, function (value) {
+    element(by.id("inputEdit")).clear()
+    .then(function() {
+      element(by.id("inputEdit")).sendKeys(value);
+    });
+  });
+
+  this.When(/^clicar em Salvar$/, function () {
+    element(by.id("btnSalvar")).click();
   });
 
   this.Then(/^o TODO deverá aparecer na lista com seu nome alterado$/, function (callback) {
@@ -83,15 +108,15 @@ module.exports = function() {
   });
 
 
-  /*
-  Cenário: Excluir
+  /**
+  * Cenário: Usuário deseja excluir um TODO
   */
   this.When(/^o usuário clicar no botão Excluir do elemento na posição "([^"]*)"$/, function (position) {
     setTimeout(function() {
       element(by.repeater('todo in todos').row(position))
         .element(by.css('.btnExcluir'))
         .click();
-    }, 1200);
+    }, 1400);
   });
 
   this.Then(/^o TODO deverá sair da lista$/, function (callback) {
@@ -104,7 +129,7 @@ module.exports = function() {
           callback();
         }
       });
-    }, 1300);
+    }, 1500);
   });
 
 }

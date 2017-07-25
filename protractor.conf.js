@@ -25,7 +25,7 @@ exports.config = {
 
   onPrepare: function() {
     browser.manage().window().maximize();
-    browser.driver.get("http://localhost:8080");
+    browser.driver.get("http://localhost:9999");
   }
 
 }

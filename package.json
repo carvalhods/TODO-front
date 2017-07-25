@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/http-server -c-1 -o",
-    "test": "./node_modules/.bin/http-server -c-1&;; ./node_modules/.bin/webdriver-manager update && ./node_modules/.bin/protractor protractor.conf.js && killall node"
+    "test": "./node_modules/.bin/http-server -p 9999 -s -c-1&;; ./node_modules/.bin/webdriver-manager update && ./node_modules/.bin/protractor protractor.conf.js"
   },
   "repository": {
     "type": "git",
